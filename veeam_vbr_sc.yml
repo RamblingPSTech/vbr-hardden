@@ -5,4 +5,5 @@
   roles:
     - osconfig
     - veeam_security
+    - veeam_config
 ...
