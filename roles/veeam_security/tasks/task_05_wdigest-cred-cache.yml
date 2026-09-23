@@ -1,0 +1,12 @@
+---
+# Ref: Disable Credential Caching in the WDigest Authentication Protocol (CM0087)
+# https://www.cisa.gov/eviction-strategies-tool/info-countermeasures/CM0087
+
+- name: Disable WinDigest Credential Caching
+  ansible.windows.win_regedit:
+    path: HKLM:\System\CurrentControlSet\Control\SecurityProviders\WDigest
+    name: UseLogonCredential
+    data: 0x0
+    type: dword
+    state: present
+...

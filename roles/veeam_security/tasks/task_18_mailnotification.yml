@@ -1,0 +1,13 @@
+---
+- name: Enable Email Notification
+  ansible.windows.win_shell: |
+    $current = (Get-VBRMailNotificationConfiguration).enabled
+    if ($current -ne $true) {
+        Enable-VBRMailNotification
+        Write-Output "EMAIL_NOTIFICATION_ENABLED"
+    } else {
+        Write-Output "EMAIL_NOTIFICATION_ALREADY_ENABLED"
+    }
+  register: veeam_security_mail_notification_config
+  changed_when: "'EMAIL_NOTIFICATION_ENABLED' in veeam_security_mail_notification_config.stdout"
+...

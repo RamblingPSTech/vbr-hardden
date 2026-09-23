@@ -1,0 +1,9 @@
+---
+# Ref: ansible.windows.win_timezone module – Sets Windows machine timezone
+# https://docs.ansible.com/projects/ansible/latest/collections/ansible/windows/win_timezone_module.html#ansible-collections-ansible-windows-win-timezone-module
+# https://msdn.microsoft.com/en-us/library/ms912391.aspx
+
+- name: "Set timezone to {{ timezone.description }}"
+  ansible.windows.win_timezone:
+    timezone: "{{ timezone.name }}"
+...

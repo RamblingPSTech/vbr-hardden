@@ -1,0 +1,58 @@
+---
+# Ref: Transport Layer Security (TLS) best practices with .NET Framework
+# https://learn.microsoft.com/en-us/dotnet/framework/network-programming/tls
+
+- name: Enable .NET Strong Crypto for 64-bit
+  ansible.windows.win_regedit:
+    path: HKLM:\SOFTWARE\Microsoft\.NETFramework\v4.0.30319
+    name: SchUseStrongCrypto
+    data: 1
+    type: dword
+    state: present
+
+- name: Enable .NET System Default TLS for 64-bit
+  ansible.windows.win_regedit:
+    path: HKLM:\SOFTWARE\Microsoft\.NETFramework\v4.0.30319
+    name: SystemDefaultTlsVersions
+    data: 1
+    type: dword
+    state: present
+
+- name: Enable .NET Strong Crypto for 32-bit
+  ansible.windows.win_regedit:
+    path: HKLM:\SOFTWARE\WOW6432Node\Microsoft\.NETFramework\v4.0.30319
+    name: SchUseStrongCrypto
+    data: 1
+    type: dword
+    state: present
+
+- name: Enable .NET System Default TLS for 32-bit
+  ansible.windows.win_regedit:
+    path: HKLM:\SOFTWARE\WOW6432Node\Microsoft\.NETFramework\v4.0.30319
+    name: SystemDefaultTlsVersions
+    data: 1
+    type: dword
+    state: present
+
+# Ref: Configure secure protocol options for WinHTTP
+# https://learn.microsoft.com/en-us/windows-server/networking/configure-secure-protocol-options-winhttp?tabs=x64
+# https://learn.microsoft.com/en-us/windows/win32/winhttp/option-flags#winhttp_option_secure_protocols
+
+- name: Harden WinHttp
+  ansible.windows.win_regedit:
+    path: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\WinHttp
+    name: DefaultSecureProtocols
+    data: 0x00002800
+    type: dword
+    state: present
+
+- name: Harden WinHttp Wow6432Node
+  ansible.windows.win_regedit:
+    path: HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Internet Settings\WinHttp
+    name: DefaultSecureProtocols
+    data: 0x00002800
+    type: dword
+    state: present
+
+
+...

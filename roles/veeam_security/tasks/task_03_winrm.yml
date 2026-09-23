@@ -1,0 +1,7 @@
+---
+- name: Stop and disable WinRM Service
+  ansible.windows.win_service:
+    name: WinRM
+    start_mode: disabled
+    state: stopped
+...

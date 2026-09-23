@@ -1,0 +1,7 @@
+---
+- name: Stop and disable Remote Registry Service
+  ansible.windows.win_service:
+    name: RemoteRegistry
+    start_mode: disabled
+    state: stopped
+...

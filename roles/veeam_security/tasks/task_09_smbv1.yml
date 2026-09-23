@@ -1,0 +1,12 @@
+---
+- name: Remove SMBv1
+  ansible.windows.win_feature:
+    name: FS-SMB1
+    state: absent
+  register: veeam_security_win_feature_remove_smbv1
+
+- name: Reboot if removing FS-SMB1 feature requires it
+  ansible.windows.win_reboot:
+    test_command: echo "OK"
+  when: veeam_security_win_feature_remove_smbv1.reboot_required
+...

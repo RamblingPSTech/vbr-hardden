@@ -1,0 +1,9 @@
+---
+- name: Disable Windows Script Host (WSH)
+  ansible.windows.win_regedit:
+    path: HKLM:\SOFTWARE\Microsoft\Windows Script Host\Settings
+    name: Enabled
+    data: 0x0
+    type: dword
+    state: present
+...

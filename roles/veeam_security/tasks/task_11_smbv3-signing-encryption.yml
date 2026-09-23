@@ -1,0 +1,40 @@
+---
+- name: SMB Server Enable encryption
+  ansible.windows.win_shell: |
+    $current = (Get-SmbServerConfiguration).EncryptData
+    if ($current -ne $true) {
+        Set-SmbServerConfiguration -EncryptData $true -Confirm:$false
+        Write-Output "SMB_ENCRYPTION_ENFORCED"
+    } else {
+        Write-Output "SMB_ALREADY_ENCRYPTED"
+    }
+  register: veeam_security_smb_server_config
+  changed_when: "'SMB_ENCRYPTION_ENFORCED' in veeam_security_smb_server_config.stdout"
+
+
+- name: SMB Server Require Security Signature
+  ansible.windows.win_shell: |
+    $current = (Get-SmbServerConfiguration).RequireSecuritySignature
+    if ($current -ne $true) {
+        Set-SmbServerConfiguration -RequireSecuritySignature $true -Confirm:$false
+        Write-Output "SMB_SIGNATURE_REQUIRED"
+    } else {
+        Write-Output "SMB_SIGNATURE_ALREADY_REQUIRED"
+    }
+  register: veeam_security_smb_server_config
+  changed_when: "'SMB_SIGNATURE_REQUIRED' in veeam_security_smb_server_config.stdout"
+
+
+- name: SMB Server Enable SecuritySignature
+  ansible.windows.win_shell: |
+    $current = (Get-SmbServerConfiguration).EnableSecuritySignature
+    if ($current -ne $true) {
+        Set-SmbServerConfiguration -EnableSecuritySignature $true -Confirm:$false
+        Write-Output "SMB_SIGNATURE_ENABLED"
+    } else {
+        Write-Output "SMB_SIGNATURE_ALREADY_ENABLED"
+    }
+  register: veeam_security_smb_server_config
+  changed_when: "'SMB_SIGNATURE_ENABLED' in veeam_security_smb_server_config.stdout"
+
+...

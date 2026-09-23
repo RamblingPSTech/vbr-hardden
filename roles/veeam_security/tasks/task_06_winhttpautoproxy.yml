@@ -1,0 +1,41 @@
+---
+# Ref: How to disable HTTP proxy features
+# https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/disable-http-proxy-auth-features
+
+# The NCA, IP Helper, and Windows Connection Manager services all depend on the WinHTTP Web Proxy Auto-Discovery Service.
+# To disable the WinHTTP Web Proxy Auto-Discovery Service, you must first disable the NCA, IP Helper, and Windows Connection Manager services.
+
+# The NCA service Depends on the IP Helper service. To disable IP Helper, you must first disable the NCA service
+- name: Disable Network Connectivity Assistant (NCA)
+  ansible.windows.win_service:
+    name: NcaSvc
+    start_mode: disabled
+    state: stopped
+
+# The WinHTTP Web Proxy Auto-Discovery Service depends on the this IP Helper service.
+# To disable the WinHTTP Web Proxy Auto-Discovery Service, you must first disable the IP Helper service.
+- name: Disable IP Helper Service
+  ansible.windows.win_service:
+    name: iphlpsvc
+    start_mode: disabled
+    state: stopped
+
+
+# The WinHTTP Web Proxy Auto-Discovery Service depends on the Windows Connection Manager service.
+# To disable the WinHTTP Web Proxy Auto-Discovery Service, you must first disable the Windows Connection Manager service.
+- name: Disable Windows Connection Manager Service
+  ansible.windows.win_service:
+    name: Wcmsvc
+    start_mode: disabled
+    state: stopped
+
+# To pass the Veeam Security Compliance Check for the WinHTTP Web Proxy Auto-Discovery Service,
+# you must disable the service and set the Start registry value to 0x4 (Disabled).
+- name: Disable WinHTTP Web Proxy Auto-Discovery Service
+  ansible.windows.win_regedit:
+    path: HKLM:\System\CurrentControlSet\Services\WinHttpAutoProxySvc
+    name: Start
+    data: 0x4
+    type: dword
+    state: present
+...

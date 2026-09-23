@@ -1,0 +1,14 @@
+---
+# ansible_host: 172.22.64.221
+ansible_host: vemvbr
+ansible_user: administrator
+ansible_connection: ssh
+ansible_shell_type: powershell
+ansible_shell_executable: powershell
+# ansible_ssh_private_key_file: ~/.ssh/vbr_id_ecdsa
+# ansible_python_interpreter: ~/vbr_ansible/bin/python
+
+timezone:
+  name: Eastern Standard Time
+  description: (GMT-05:00) Eastern Time (US & Canada)
+...

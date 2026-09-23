@@ -1,0 +1,8 @@
+---
+- name: TimeZone Configuration
+  ansible.builtin.include_tasks:
+    file: task_timezone.yml
+- name: .NET Strong Crypto Configuration
+  ansible.builtin.include_tasks:
+    file: task_dotnet-strong-crypto.yml
+...

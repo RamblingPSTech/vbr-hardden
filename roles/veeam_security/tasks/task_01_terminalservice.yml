@@ -1,0 +1,7 @@
+---
+- name: Stop and disable Remote Desktop Services (TermService)
+  ansible.windows.win_service:
+    name: TermService
+    start_mode: disabled
+    state: stopped
+...

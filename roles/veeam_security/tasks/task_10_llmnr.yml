@@ -1,0 +1,12 @@
+---
+# Ref: Windows Security Baseline Turn off multicast name resolution (AZ-WIN-00145)
+# https://learn.microsoft.com/en-us/azure/governance/policy/samples/guest-configuration-baseline-windows#administrative-templates---network
+
+- name: Disable Link-Local Multicast Name Resolution (LLMNR)
+  ansible.windows.win_regedit:
+    path: HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\DNSClient
+    name: EnableMultiCast
+    data: 0x0
+    type: dword
+    state: present
+...

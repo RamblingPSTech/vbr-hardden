@@ -1,0 +1,8 @@
+---
+- name: Return IP configuration
+  hosts: vemvbr
+  gather_facts: false
+  roles:
+    - osconfig
+    - veeam_security
+...

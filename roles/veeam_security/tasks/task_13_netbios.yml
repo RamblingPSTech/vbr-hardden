@@ -1,0 +1,29 @@
+---
+- name: Disable NetBIOS system wide
+  community.windows.win_netbios:
+    state: disabled
+
+# Ref: NetBiosOptions
+# https://learn.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/microsoft-windows-netbt-interfaces-interface-netbiosoptions
+# https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/disable-netbios-tcp-ip-using-dhcp
+
+- name: Disable NetBIOS system wide (per interface)
+  ansible.windows.win_shell: |
+    $changed = $false
+    $i = 'HKLM:\SYSTEM\CurrentControlSet\Services\netbt\Parameters\interfaces'
+    Get-ChildItem $i | ForEach-Object {
+        if ((Get-ItemProperty -Path "$i\$($_.pschildname)" -name NetBiosOptions).NetBiosOptions -ne 2) {
+            Set-ItemProperty -Path "$i\$($_.pschildname)" -name NetBiosOptions -value 2
+            $changed = $true
+        }
+        if ($changed) {
+          Write-Output "NETBIOS_CHANGED"
+        }
+        else {
+            Write-Output "NETBIOS_ALREADY_DISABLED"
+        }
+    }
+  register: veeam_security_netbios_config
+  changed_when: "'NETBIOS_CHANGED' in veeam_security_netbios_config.stdout"
+
+...

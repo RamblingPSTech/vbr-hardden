@@ -1,0 +1,19 @@
+---
+# Ref: Configure added LSA protection - Enable LSA protection on a single computer
+# https://learn.microsoft.com/en-us/windows-server/security/credentials-protection-and-management/configuring-additional-lsa-protection#enable-by-using-the-registry
+
+- name: Set LSASS RunAsPPL Registry Key
+  ansible.windows.win_regedit:
+    path: HKLM:\SYSTEM\CurrentControlSet\Control\Lsa
+    name: RunAsPPL
+    data: 0x2
+    type: dword
+    state: present
+- name: Set LSASS RunAsPPLBoot Registry Key
+  ansible.windows.win_regedit:
+    path: HKLM:\SYSTEM\CurrentControlSet\Control\Lsa
+    name: RunAsPPLBoot
+    data: 0x2
+    type: dword
+    state: present
+...

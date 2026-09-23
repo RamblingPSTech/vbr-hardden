@@ -1,0 +1,61 @@
+---
+# - name: Terminal Services
+#   ansible.builtin.include_tasks:
+#     file: task_01_terminalservice.yml
+
+- name: Remote Registry
+  ansible.builtin.include_tasks:
+    file: task_02_remote-registry.yml
+
+- name: Windows Remote Management (WinRM)
+  ansible.builtin.include_tasks:
+    file: task_03_winrm.yml
+
+- name: Enable Windows Firewall
+  ansible.builtin.include_tasks:
+    file: task_04_windowsfirewall.yml
+
+- name: WinDigest Credential Caching
+  ansible.builtin.include_tasks:
+    file: task_05_wdigest-cred-cache.yml
+
+- name: WinHTTP Web Proxy Auto-Discovery Service
+  ansible.builtin.include_tasks:
+    file: task_06_winhttpautoproxy.yml
+
+- name: System TLS Configuration
+  ansible.builtin.include_tasks:
+    file: task_07_system-tls.yml
+
+- name: Windows Script Host (WSH)
+  ansible.builtin.include_tasks:
+    file: task_08_wsh.yml
+
+- name: Disable SMBv1
+  ansible.builtin.include_tasks:
+    file: task_09_smbv1.yml
+
+- name: Link-Local Multicast Name Resolution (LLMNR)
+  ansible.builtin.include_tasks:
+    file: task_10_llmnr.yml
+
+- name: SMBv3 Signing and Encryption
+  ansible.builtin.include_tasks:
+    file: task_11_smbv3-signing-encryption.yml
+
+- name: Local Security Authority Subsystem Service (LSASS)
+  ansible.builtin.include_tasks:
+    file: task_12_lsass.yml
+
+- name: NetBIOS
+  ansible.builtin.include_tasks:
+    file: task_13_netbios.yml
+
+- name: Email Notification
+  ansible.builtin.include_tasks:
+    file: task_18_mailnotification.yml
+
+- name: Linux Known Host Policy
+  ansible.builtin.include_tasks:
+    file: task_21_linuxknownhosts.yml
+...
