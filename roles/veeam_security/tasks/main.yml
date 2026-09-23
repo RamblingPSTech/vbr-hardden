@@ -50,12 +50,4 @@
 - name: NetBIOS
   ansible.builtin.include_tasks:
     file: task_13_netbios.yml
-
-- name: Email Notification
-  ansible.builtin.include_tasks:
-    file: task_18_mailnotification.yml
-
-- name: Linux Known Host Policy
-  ansible.builtin.include_tasks:
-    file: task_21_linuxknownhosts.yml
 ...
