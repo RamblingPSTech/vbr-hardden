@@ -1,3 +1,11 @@
 {
-    "ansible.python.interpreterPath": "./venv/bin/python"
+    "ansible.python.interpreterPath": "${workspaceFolder}/.envpython/bin/python",
+    "ansible.python.activationScript": "${workspaceFolder}/.envpython/bin/activate",
+    "python.envFile": ".env",
+    "python.defaultInterpreterPath": "${workspaceFolder}/.envpython/bin/python",
+    "python-envs.workspaceSearchPaths": [
+        ".venv",
+        "*/.venv",
+        ".envpython"
+    ]
 }
