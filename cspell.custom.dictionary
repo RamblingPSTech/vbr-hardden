@@ -1,0 +1,12 @@
+KnownHosts
+LLMNR
+LSASS
+NetBIOS
+NetBiosOptions
+SMBv1
+SMBv3
+Veeam
+WinHTTP
+WinRM
+WDigest
+WSH

@@ -1,0 +1,28 @@
+version: '0.2'
+language: en-US
+dictionaryDefinitions:
+  - name: custom
+    path: ./cspell.custom.dictionary
+    addWords: true
+dictionaries:
+  - custom
+ignorePaths:
+  - .ansible/**
+  - venv/**
+overrides:
+  - filename: '**/*.yml'
+    words:
+      - ansible
+      - builtin
+      - changed_when
+      - gather_facts
+      - include_tasks
+      - register
+  - filename: '**/*.yaml'
+    words:
+      - ansible
+      - builtin
+      - changed_when
+      - gather_facts
+      - include_tasks
+      - register

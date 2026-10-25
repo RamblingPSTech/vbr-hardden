@@ -8,6 +8,6 @@
     } else {
         Write-Output "EMAIL_NOTIFICATION_ALREADY_ENABLED"
     }
-  register: veeam_security_mail_notification_config
-  changed_when: "'EMAIL_NOTIFICATION_ENABLED' in veeam_security_mail_notification_config.stdout"
+  register: veeam_config_veeam_security_mail_notification_config
+  changed_when: "'EMAIL_NOTIFICATION_ENABLED' in veeam_config_veeam_security_mail_notification_config.stdout"
 ...

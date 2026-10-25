@@ -8,6 +8,6 @@
     } else {
         Write-Output "LINUX_KNOWN_HOSTS_ALREADY_ENABLED"
     }
-  register: veeam_security_linux_trusted_host_config
-  changed_when: "'LINUX_KNOWN_HOSTS_ENABLED' in veeam_security_linux_trusted_host_config.stdout"
+  register: veeam_config_veeam_security_linux_trusted_host_config
+  changed_when: "'LINUX_KNOWN_HOSTS_ENABLED' in veeam_config_veeam_security_linux_trusted_host_config.stdout"
 ...
